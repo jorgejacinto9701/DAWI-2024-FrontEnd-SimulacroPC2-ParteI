@@ -1,4 +1,34 @@
 <app-menu></app-menu>
-<div style="padding: 2%">
-    <p>crud-revista works!</p>
+<div class="container">
+    <div class="row">
+           <mat-toolbar color="primary" >    
+           <span>CRUD Revista</span>    
+           </mat-toolbar>  
+    </div>
+    <div class="row" style="margin-top: 3%">
+          <mat-form-field>
+                 <mat-label>Nombre de Revista</mat-label>            
+                 <input matInput [(ngModel)]="filtro">   
+         </mat-form-field>
+         
+         <button mat-raised-button color="primary" type="button" (click)="refrescarGrilla()" style="width: 150px;">Filtrar</button>
+         <button mat-raised-button color="primary" type="button" style="width: 150px;">Registrar</button>
+    </div>
+    <div class="row" style="margin-top: 3%">
+            <mat-table #table [dataSource]="dataSource">
+                <ng-container matColumnDef="idRevista">
+                    <mat-header-cell  mat-header-cell *matHeaderCellDef >Id</mat-header-cell>
+                    <mat-cell *matCellDef="let aux" >{{ aux.idRevista  }}</mat-cell>
+                  </ng-container>
+                  <ng-container matColumnDef="nombre">
+                    <mat-header-cell  mat-header-cell *matHeaderCellDef >Nombre</mat-header-cell>
+                    <mat-cell *matCellDef="let aux" >{{ aux.nombre}}</mat-cell>
+                  </ng-container>
+
+                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+              <mat-row *matRowDef="let aux; columns: displayedColumns"></mat-row>
+            </mat-table>
+
+    </div>
 </div>
+
