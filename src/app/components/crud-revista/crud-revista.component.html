@@ -12,7 +12,7 @@
          </mat-form-field>
          
          <button mat-raised-button color="primary" type="button" (click)="refrescarGrilla()" style="width: 150px;">Filtrar</button>
-         <button mat-raised-button color="primary" type="button" style="width: 150px;">Registrar</button>
+         <button mat-raised-button color="primary" type="button" (click)="openAddDialog()" style="width: 150px;">Registrar</button>
     </div>
     <div class="row" style="margin-top: 3%">
             <mat-table #table [dataSource]="dataSource">

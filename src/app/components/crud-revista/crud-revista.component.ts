@@ -6,6 +6,8 @@ import { AppMaterialModule } from '../../app.material.module';
 import { RevistaService } from '../../services/revista.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { Revista } from '../../models/revista.model';
+import { MatDialog } from '@angular/material/dialog';
+import { CrudRevistaAddComponent } from '../crud-revista-add/crud-revista-add.component';
 
 @Component({
   standalone: true,
@@ -24,7 +26,9 @@ export class CrudRevistaComponent {
 
   displayedColumns = ["idRevista","nombre"];
 
-  constructor(private revistaService:RevistaService){
+  constructor(private revistaService:RevistaService,
+               private dialogService: MatDialog
+  ){
 
   }
 
@@ -38,6 +42,27 @@ export class CrudRevistaComponent {
 
   }
 
+  openAddDialog(){
+    console.log(">>> openAddDialog [ ini ]");
+    const dialog = this.dialogService.open(CrudRevistaAddComponent);
+    dialog.afterClosed().subscribe(
+        x => {
+              console.log(">>> x >> "  + x);
+              if (x === 1){
+                this.refrescarGrilla();
+              }
+        }
+    );
+
+    console.log(">>> openAddDialog [ fin ]");
+  }
+
+  openUpdateDialog(){
+    console.log(">>> openUpdateDialog [ ini ]");
+
+
+    console.log(">>> openUpdateDialog [ fin ]");
+  }
 
 
 }
